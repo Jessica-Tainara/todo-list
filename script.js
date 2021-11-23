@@ -72,6 +72,24 @@ function MoveCima() {
     }
   }
 }
+function MoveBaixo() {
+  const itens = document.getElementsByClassName('item');
+  for (let i = itens.length - 1; i >= 0; i -= 1) {
+    if (itens[i].id === 'selected' && i !== itens.length - 1) {
+      const auxiliar = itens[i].innerText;
+      itens[i].innerText = itens[i + 1].innerText;
+      itens[i + 1].innerText = auxiliar;
+      const aux = itens[i].className;
+      itens[i].className = itens[i + 1].className;
+      itens[i + 1].className = aux;
+      itens[i + 1].id = itens[i].id;
+      itens[i].removeAttribute('id');
+      const color = itens[i].style.backgroundColor;
+      itens[i].style.backgroundColor = itens[i + 1].style.backgroundColor;
+      itens[i + 1].style.backgroundColor = color;
+    }
+  }
+}
 apaga.addEventListener('click', ApagaTudo);
 cria.addEventListener('click', CriaTarefa);
 lista.addEventListener('click', TarefaSelecionada);
@@ -79,3 +97,4 @@ lista.addEventListener('dblclick', TarefaPronta);
 apagafinalizados.addEventListener('click', ApagaFinalizados);
 apagaselecionados.addEventListener('click', ApagaSelecionados);
 cima.addEventListener('click', MoveCima);
+baixo.addEventListener('click', MoveBaixo);
