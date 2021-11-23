@@ -1,7 +1,8 @@
 const caixa = document.getElementById('texto-tarefa');
-const botao = document.getElementById('criar-tarefa');
+const cria = document.getElementById('criar-tarefa');
 const lista = document.getElementById('lista-tarefas');
 const tarefas = document.getElementsByTagName('li');
+const apaga = document.getElementById('apaga-tudo');
 function CriaTarefa() {
   const tarefa = document.createElement('li');
   tarefa.className = 'item';
@@ -9,7 +10,7 @@ function CriaTarefa() {
   lista.appendChild(tarefa);
   caixa.value = '';
 }
-function background(event) {
+function TarefaSelecionada(event) {
   for (let i = 0; i < tarefas.length; i += 1) {
     tarefas[i].style.backgroundColor = 'white';
     tarefas[i].removeAttribute('id');
@@ -21,12 +22,20 @@ function background(event) {
 }
 function TarefaPronta(event) {
   const evento = event.target;
-  if (event.target.className === 'item completed') {
-    evento.className = '';
+  if (evento.className === 'item completed') {
+    evento.className = 'item';
   } else {
     evento.className = 'item completed';
   }
 }
-botao.addEventListener('click', CriaTarefa);
-lista.addEventListener('click', background);
+function ApagaTudo() {
+  const itens = document.getElementsByClassName('item');
+  for (let i = itens.length - 1; i >= 0; i -= 1) {
+    const itemunico = document.querySelector('.item');
+    lista.removeChild(itemunico);
+  }
+}
+apaga.addEventListener('click', ApagaTudo);
+cria.addEventListener('click', CriaTarefa);
+lista.addEventListener('click', TarefaSelecionada);
 lista.addEventListener('dblclick', TarefaPronta);
