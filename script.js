@@ -3,6 +3,7 @@ const cria = document.getElementById('criar-tarefa');
 const lista = document.getElementById('lista-tarefas');
 const tarefas = document.getElementsByTagName('li');
 const apaga = document.getElementById('apaga-tudo');
+const apagafinalizados = document.getElementById('remover-finalizados');
 function CriaTarefa() {
   const tarefa = document.createElement('li');
   tarefa.className = 'item';
@@ -35,7 +36,15 @@ function ApagaTudo() {
     lista.removeChild(itemunico);
   }
 }
+function ApagaFinalizados() {
+  const finalizados = document.getElementsByClassName('completed');
+  for (let i = finalizados.length - 1; i >= 0; i -= 1) {
+    const finalizadounico = document.querySelector('.completed');
+    lista.removeChild(finalizadounico);
+  }
+}
 apaga.addEventListener('click', ApagaTudo);
 cria.addEventListener('click', CriaTarefa);
 lista.addEventListener('click', TarefaSelecionada);
 lista.addEventListener('dblclick', TarefaPronta);
+apagafinalizados.addEventListener('click', ApagaFinalizados);
