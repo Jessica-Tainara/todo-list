@@ -1,6 +1,3 @@
 .completed {
     text-decoration: line-through;
 }
-#selected {
-   background-color: 'rgb(128,128,128)';
-}

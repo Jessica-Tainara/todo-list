@@ -7,6 +7,20 @@ const apagafinalizados = document.getElementById('remover-finalizados');
 const apagaselecionados = document.getElementById('remover-selecionado');
 const cima = document.getElementById('mover-cima');
 const baixo = document.getElementById('mover-baixo');
+const salva = document.getElementById('salvar-tarefas');
+function carregasalvos() {
+  for (let i = 0; i < localStorage.itens.split(',').length; i += 1) {
+    const itemcriado = document.createElement('li');
+    itemcriado.innerHTML = localStorage.itens.split(',')[i];
+    itemcriado.className = localStorage.classes.split(',')[i];
+    lista.appendChild(itemcriado);
+  }
+}
+window.onload = function segundavez() {
+  if (localStorage.count === '1') {
+    carregasalvos();
+  }
+};
 function CriaTarefa() {
   const tarefa = document.createElement('li');
   tarefa.className = 'item';
@@ -54,6 +68,19 @@ function ApagaSelecionados() {
     }
   }
 }
+function Salva() {
+  localStorage.clear();
+  const textos = [];
+  const classes = [];
+  const itens = document.getElementsByClassName('item');
+  for (let i = 0; i < itens.length; i += 1) {
+    textos.push(itens[i].innerHTML);
+    classes.push(itens[i].className);
+  }
+  localStorage.setItem('itens', textos);
+  localStorage.setItem('classes', classes);
+  localStorage.setItem('count', '1');
+}
 function MoveCima() {
   const itens = document.getElementsByClassName('item');
   for (let i = 0; i < itens.length; i += 1) {
@@ -98,3 +125,4 @@ apagafinalizados.addEventListener('click', ApagaFinalizados);
 apagaselecionados.addEventListener('click', ApagaSelecionados);
 cima.addEventListener('click', MoveCima);
 baixo.addEventListener('click', MoveBaixo);
+salva.addEventListener('click', Salva);
