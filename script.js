@@ -17,7 +17,7 @@ function carregasalvos() {
   }
 }
 window.onload = function segundavez() {
-  if (localStorage.count === '1') {
+  if (localStorage.itens) {
     carregasalvos();
   }
 };
@@ -69,7 +69,7 @@ function ApagaSelecionados() {
   }
 }
 function Salva() {
-  localStorage.clear();
+  localStorage.clear('itens','classes');
   const textos = [];
   const classes = [];
   const itens = document.getElementsByClassName('item');
@@ -79,7 +79,6 @@ function Salva() {
   }
   localStorage.setItem('itens', textos);
   localStorage.setItem('classes', classes);
-  localStorage.setItem('count', '1');
 }
 function MoveCima() {
   const itens = document.getElementsByClassName('item');
