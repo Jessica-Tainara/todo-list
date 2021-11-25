@@ -69,7 +69,8 @@ function ApagaSelecionados() {
   }
 }
 function Salva() {
-  localStorage.clear('itens','classes');
+  localStorage.removeItem('classes');
+  localStorage.removeItem('itens');
   const textos = [];
   const classes = [];
   const itens = document.getElementsByClassName('item');
