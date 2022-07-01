@@ -16,7 +16,7 @@ function carregasalvos() {
     lista.appendChild(itemcriado);
   }
 }
-window.onload = function segundavez() {
+window.onload = function VerficarLocalStorage() {
   if (localStorage.itens) {
     carregasalvos();
   }
@@ -75,12 +75,12 @@ function Salva() {
   const classes = [];
   const itens = document.getElementsByClassName('item');
   if (itens.length > 0) {
-  for (let i = 0; i < itens.length; i += 1) {
-    textos.push(itens[i].innerHTML);
-    classes.push(itens[i].className);
-  }
-  localStorage.setItem('itens', textos);
-  localStorage.setItem('classes', classes);
+    for (let i = 0; i < itens.length; i += 1) {
+      textos.push(itens[i].innerHTML);
+      classes.push(itens[i].className);
+    }
+    localStorage.setItem('itens', textos);
+    localStorage.setItem('classes', classes);
   }
 }
 function MoveCima() {
